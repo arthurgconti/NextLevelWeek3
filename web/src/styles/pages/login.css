@@ -1,0 +1,27 @@
+#login {
+    weight: 100vw;
+    height: 100vh;
+    background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login .content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 100%;
+    max-height: 680px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-wrapper .local-form{
+    background:#fff;
+    width:30%;
+    height: 100%;
+    display: flex;
+}
