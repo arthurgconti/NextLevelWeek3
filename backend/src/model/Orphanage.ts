@@ -28,6 +28,9 @@ export default class Orphanage {
     @Column()
     open_on_weekends: boolean;
 
+    @Column()
+    status:boolean;
+
     //primeiro parâmetro, função que devolve tipo de retorno, segundo parâmetro, dado x imagem que recebi qual campo me retorna o relacionamento inverso
     @OneToMany(()=> Image,image => image.orphanage,{
         cascade:['insert','update']

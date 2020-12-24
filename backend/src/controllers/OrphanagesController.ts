@@ -11,7 +11,7 @@ export default {
 
     const orphanageRepository = getRepository(Orphanage)
 
-    const orphanages = await orphanageRepository.find({ relations: ['images'] })
+    const orphanages = await orphanageRepository.find({ relations: ['images'] , where:{status:true}})
 
     return response.json(OrphanageView.renderMany(orphanages))
   },
