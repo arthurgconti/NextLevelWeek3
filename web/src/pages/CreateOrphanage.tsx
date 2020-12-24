@@ -10,6 +10,7 @@ import happyMapIcon from "../utils/mapIcon";
 import api from "../services/api";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
+import PrimaryButton from "../components/PrimaryButton";
 
 
 export default function CreateOrphanage() {
@@ -194,9 +195,10 @@ export default function CreateOrphanage() {
             </div>
           </fieldset>
 
-          <button className="confirm-button" type="submit">
+          {/* <button className="confirm-button" type="submit">
             Confirmar
-          </button>
+          </button> */}
+          <PrimaryButton isDesable={false} text="Confirmar" />
         </form>
       </main>
     </div>
