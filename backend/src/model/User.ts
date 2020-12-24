@@ -1,6 +1,5 @@
 import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-const bcrypt = require('bcrypt')
-import * as hash from '../../src/utils/hash'
+import bcrypt from 'bcrypt'
 
 
 @Entity('users')
@@ -25,7 +24,4 @@ export default class User {
         const saltRounds = Math.floor(10 * Math.random() + 1)
         this.password = await bcrypt.hash(this.password, saltRounds)
     }
-
-
-
 }
