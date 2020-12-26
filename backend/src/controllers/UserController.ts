@@ -53,12 +53,10 @@ export default {
 
     async update(request: Request, response: Response) {
         const {
-
-            name,
             email,
-            password
         } = request.body
 
+        console.log(email);
     },
 
     async authenticate(request: Request, response: Response) {
