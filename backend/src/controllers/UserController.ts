@@ -1,9 +1,11 @@
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import * as Yup from 'yup'
-import User from '../model/User'
-import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+
+import Auth from '../middleware/auth'
+import User from '../model/User'
 import Env from '../config/env'
 
 const secret = Env.secret || ''
