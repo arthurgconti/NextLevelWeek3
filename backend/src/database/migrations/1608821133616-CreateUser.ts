@@ -32,8 +32,14 @@ export class CreateUser1608821133616 implements MigrationInterface {
                     isNullable: true
                 },
                 {
-                    name: 'passwordRestExpires',
+                    name: 'passwordResetExpires',
                     type: 'Date',
+                    isNullable: true
+                },
+                {
+                    name: 'passwordTokenUsed',
+                    type: 'boolean',
+                    default: false,
                     isNullable: true
                 }
             ]

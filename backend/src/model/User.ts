@@ -22,7 +22,10 @@ export default class User {
     passwordResetToken: string;
 
     @Column({ nullable: true })
-    passwordRestExpires: Date;
+    passwordResetExpires: Date;
+
+    @Column({ nullable: true })
+    passwordTokenUsed: boolean;
 
     @BeforeInsert()
     @BeforeUpdate()

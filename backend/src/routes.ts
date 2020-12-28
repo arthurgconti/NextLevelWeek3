@@ -20,6 +20,9 @@ routes.put('/user', UserController.update)
 
 routes.post('/authenticate', AuthController.authenticate)
 routes.post('/forgot-password', AuthController.forgotPass)
+routes.get('/reset-password', AuthController.getResetPassword)
+routes.put('/reset-password', AuthController.resetPassword)
+
 
 
 export default routes;
