@@ -15,16 +15,26 @@ export class CreateUser1608821133616 implements MigrationInterface {
                     generationStrategy: 'increment',
                 },
                 {
-                    name:'name',
-                    type:'varchar'
+                    name: 'name',
+                    type: 'varchar'
                 },
                 {
-                    name:'email',
-                    type:'varchar'
+                    name: 'email',
+                    type: 'varchar'
                 },
                 {
-                    name:'password',
-                    type:'varchar'
+                    name: 'password',
+                    type: 'varchar'
+                },
+                {
+                    name: 'passwordResetToken',
+                    type: 'varchar',
+                    isNullable: true
+                },
+                {
+                    name: 'passwordRestExpires',
+                    type: 'Date',
+                    isNullable: true
                 }
             ]
         }))

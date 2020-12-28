@@ -2,8 +2,10 @@ import { Router } from 'express'
 import multer from 'multer'
 
 import OrphanagesController from './controllers/OrphanagesController'
-import uploadConfig from './config/upload'
 import UserController from './controllers/UserController'
+import AuthController from './controllers/AuthController'
+
+import uploadConfig from './config/upload'
 import auth from './middleware/auth'
 
 const routes = Router()
@@ -16,8 +18,8 @@ routes.post('/orphanages', upload.array('images'), OrphanagesController.create)
 routes.post('/user', UserController.create)
 routes.put('/user', UserController.update)
 
-routes.post('/authenticate', UserController.authenticate)
-routes.post('/forgot-password', auth, UserController.update)
+routes.post('/authenticate', AuthController.authenticate)
+routes.post('/forgot-password', AuthController.forgotPass)
 
 
 export default routes;

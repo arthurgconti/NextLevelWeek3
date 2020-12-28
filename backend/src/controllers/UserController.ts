@@ -1,14 +1,7 @@
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import * as Yup from 'yup'
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
-
-import Auth from '../middleware/auth'
 import User from '../model/User'
-import Env from '../config/env'
-
-const secret = Env.secret || ''
 
 export default {
 
@@ -29,7 +22,7 @@ export default {
             const data = {
                 name,
                 email,
-                password
+                password,
             }
 
             const schema = Yup.object().shape({
@@ -58,35 +51,4 @@ export default {
 
         console.log(email);
     },
-
-    async authenticate(request: Request, response: Response) {
-        try {
-            const { email, password } = request.body
-
-            const userRepository = getRepository(User)
-            const user = await userRepository.findOne({ email })
-
-            if (!user)
-                return response.status(400).json({ error: "User not found" });
-
-            const validPassword = await bcrypt.compare(password, user.password)
-
-            if (!validPassword) {
-                return response.json({ message: 'Senha incorreta' })
-            }
-            else {
-                const token = jwt.sign({ id: user.id }, secret, {
-                    expiresIn: 86400
-                })
-
-                return response.json({
-                    user,
-                    token
-                })
-            }
-        }
-        catch (err) {
-            return response.status(400).json({ error: "User authentication failed" });
-        }
-    }
 }

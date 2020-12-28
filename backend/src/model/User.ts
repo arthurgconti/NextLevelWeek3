@@ -18,6 +18,12 @@ export default class User {
     @Column()
     password: string;
 
+    @Column({ nullable: true })
+    passwordResetToken: string;
+
+    @Column({ nullable: true })
+    passwordRestExpires: Date;
+
     @BeforeInsert()
     @BeforeUpdate()
     async generateHash() {
