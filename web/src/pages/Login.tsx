@@ -2,6 +2,8 @@ import React, { FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi'
 import '../styles/pages/login.css'
+import api from '../services/api'
+import { login } from '../services/auth'
 
 import LogoHappy from '../images/Logotipo.svg'
 import PrimaryButton from '../components/PrimaryButton';
@@ -21,9 +23,22 @@ function Login() {
     }
 
 
-    function handleSubmit(event: FormEvent) {
+    async function handleSubmit(event: FormEvent) {
         event.preventDefault()
-        alert(`disparou Remeber: ${isChecked}`)
+
+        const data = { email, password }
+
+        console.log(data);
+
+        await api.post('/authenticate', data)
+            .then((res) => {
+
+                login(res.data.token, isChecked)
+                console.log(res.data);
+            }
+            )
+            .catch(err => console.log(err))
+
     }
 
 
@@ -82,7 +97,7 @@ function Login() {
                         </div>
                         <br />
 
-                        
+
                         <div className="checkbox-content">
                             <div className="checkbox-label">
                                 <input
