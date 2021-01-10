@@ -7,8 +7,12 @@ import User from '../model/User'
 import Env from '../config/env'
 import mailer from '../middleware/mailer'
 
+const tokenList: { [key: string]: Object }={}
 const secret = Env.secret || ''
+const refreshSecret = Env.refreshTokenSecret || ''
 const base_url = Env.baseUrl || ''
+const tokenExpires = Env.tokenLife || ''
+const refreshTokenExpires = Env.refreshTokenLife || ''
 
 export default {
 
@@ -29,13 +33,25 @@ export default {
             }
             else {
                 const token = jwt.sign({ id: user.id }, secret, {
-                    expiresIn: 86400
+                    expiresIn: tokenExpires
                 })
 
-                return response.json({
-                    user,
-                    token
+                const refreshToken = jwt.sign({
+                    id: user
+                        .id
+                }, refreshSecret, {
+                    expiresIn: refreshTokenExpires
                 })
+                const responseData = {
+                    user,
+                    token,
+                    refreshToken
+                }
+
+                /* tslint:disable-next-line */
+                tokenList[refreshToken] = responseData
+
+                return response.json(responseData)
             }
         }
         catch (err) {
