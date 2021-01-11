@@ -48,7 +48,6 @@ export default {
                     refreshToken
                 }
 
-                /* tslint:disable-next-line */
                 tokenList[refreshToken] = responseData
 
                 return response.json(responseData)
