@@ -7,7 +7,7 @@ import User from '../model/User'
 import Env from '../config/env'
 import mailer from '../middleware/mailer'
 
-const tokenList: { [key: string]: Object }={}
+const tokenList: { [key: string]: { user: User; token: string; refreshToken: string; } } = {}
 const secret = Env.secret || ''
 const refreshSecret = Env.refreshTokenSecret || ''
 const base_url = Env.baseUrl || ''
@@ -42,11 +42,14 @@ export default {
                 }, refreshSecret, {
                     expiresIn: refreshTokenExpires
                 })
+
+
                 const responseData = {
                     user,
                     token,
                     refreshToken
                 }
+    
 
                 tokenList[refreshToken] = responseData
 
@@ -144,5 +147,25 @@ export default {
         await userRepository.save(user)
 
         response.status(200).json(user)
-    }
+    },
+
+    // async refreshToken(request: Request, response: Response) {
+    //     const { id, refreshToken } = request.body
+
+    //     if ((refreshToken) && (refreshToken in tokenList)) {
+    //         const user = {
+    //             id
+    //         }
+    //         const token = jwt.sign({ id: user.id },
+    //             secret, { expiresIn: tokenExpires })
+
+    //         const data = {
+    //             token,
+    //         }
+    //         tokenList[refreshToken].token = token
+    //         response.status(200).json(data);
+    //     } else {
+    //         response.status(404).send('Invalid request')
+    //     }
+    // }
 }

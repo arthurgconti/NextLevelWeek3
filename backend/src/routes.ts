@@ -18,6 +18,8 @@ routes.post('/orphanages', upload.array('images'), OrphanagesController.create)
 routes.post('/user', UserController.create)
 routes.put('/user', UserController.update)
 
+// routes.post('/token',AuthController.refreshToken)
+
 routes.post('/authenticate', AuthController.authenticate)
 routes.post('/forgot-password', AuthController.forgotPass)
 routes.get('/reset-password', AuthController.getResetPassword)
